@@ -4,9 +4,11 @@ require "./gcd.rb"
 
 class Fraccion
 	
-	def initialize(*args)
-		z = gcd(args[0], args[1])
-		@x, @y = args[0]/z, args[1]/z
+	attr_reader :x, :y
+
+	def initialize(x, y)
+		z = gcd(x, y)
+		@x, @y = x/z, y/z
 	end
 
 	def to_s  # devuelve una cadena con la representación del racional

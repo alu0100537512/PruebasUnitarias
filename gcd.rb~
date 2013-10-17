@@ -8,4 +8,5 @@ end
 
 puts gcd(6,3)
 puts gcd(7,4)
+
 puts gcd(2,0)

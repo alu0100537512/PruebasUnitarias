@@ -1,0 +1,54 @@
+En el archivo gcd.rb el error consiste en que nunca entra al bucle while ya que el valor v nunca es 0. Cuando se da el caso de que v es 0 devuelve un error porque no se puede dividir un numero entre 0.
+
+Usando la opción s del debbuger pude seguir la traza del código mientras se ejecutaba para saber los valores de cada variable en cada paso y comprobar lo que va pasando.
+
+Usando 3 ejemplos,
+
+	puts gcd(6,3)
+	puts gcd(7,4)
+	puts gcd(2,0)
+
+la sesión de depuración fue:
+
+	$ ruby -rdebug gcd.rb 
+	Debug.rb
+	Emacs support available.
+
+	gcd.rb:1:def gcd(u, v)
+	(rdb:1) s
+	gcd.rb:9:puts gcd(6,3)
+	(rdb:1) s
+	gcd.rb:2:  u, v = u.abs, v.abs
+	(rdb:1) s
+	gcd.rb:3:  while v == 0
+	(rdb:1) s
+	gcd.rb:6:  u
+	(rdb:1) s
+	6
+	gcd.rb:10:puts gcd(7,4)
+	(rdb:1) s
+	gcd.rb:2:  u, v = u.abs, v.abs
+	(rdb:1) s
+	gcd.rb:3:  while v == 0
+	(rdb:1) s
+	gcd.rb:6:  u
+	(rdb:1) s
+	7
+	gcd.rb:12:puts gcd(2,0)
+	(rdb:1) s
+	gcd.rb:2:  u, v = u.abs, v.abs
+	(rdb:1) s
+	gcd.rb:3:  while v == 0
+	(rdb:1) s
+	gcd.rb:4:    u, v = v, u % v
+	(rdb:1) s
+	gcd.rb:4: `divided by 0' (ZeroDivisionError)
+		from gcd.rb:4:in `gcd'
+		from gcd.rb:12
+	gcd.rb:4:    u, v = v, u % v
+	(rdb:1) s
+	gcd.rb:4:in `%': divided by 0 (ZeroDivisionError)
+		from gcd.rb:4:in `gcd'
+		from gcd.rb:12
+
+

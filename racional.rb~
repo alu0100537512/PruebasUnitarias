@@ -68,30 +68,12 @@ class Fraccion
                 return @a, @b
 	end
 
-	def producto # devuelve un nuevo racional que multiplica al objeto que invoca el que le pasan como parámetro
-		if args.size == 2
-                        x, y = minimo(args[0],args[1])
-                else
-                        x = args[0]
-                        y = 1
-                end
-
-                @a, @b = minimo(@a * x, @b * y)
-
-                return @a, @b
+	def producto(*args) # devuelve un nuevo racional que multiplica al objeto que invoca el que le pasan como parámetro
+		
 	end
 	
-	def division # devuelve un nuevo racional que multiplica al objeto que invoca el que le pasan como parámetro
-		if args.size == 2
-                        x, y = minimo(args[0],args[1])
-                else
-                        x = args[0]
-                        y = 1
-                end
-
-                @a, @b = minimo(@a * y, @b * x)
-
-                return @a, @b
+	def division(*args) # devuelve un nuevo racional que multiplica al objeto que invoca el que le pasan como parámetro
+		
 	end
 
 end

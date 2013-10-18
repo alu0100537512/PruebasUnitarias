@@ -82,7 +82,16 @@ class Fraccion
 	end
 	
 	def division(*args) # devuelve un nuevo racional que multiplica al objeto que invoca el que le pasan como parámetro
-		
+		if args.size == 2
+                        x, y = minimo(args[0],args[1])
+                else
+                        x = args[0]
+                        y = 1
+                end
+
+                @a, @b = minimo(@a * y, @b * x)
+
+                return @a, @b
 	end
 
 end

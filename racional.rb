@@ -5,52 +5,75 @@ require "./gcd.rb"
 class Fraccion
 	
 	def initialize(*args)
-		z = gcd(args[0], args[1])
-		@x, @y = args[0]/z, args[1]/z
+		if args.size == 2
+                        x = gcd(args[0],args[1])
+                        @a = args[0] / x
+                        @b = args[1] / x
+                else
+                        @a = args[0]
+                        @b = 1
+                end
 	end
 
 	def to_s  # devuelve una cadena con la representación del racional
-		"#@x/#@y"
+		"#{@a}/#{@b}"
 	end
-	def minimo(a, b)
-		z = gcd(a, b)
-		a = a/z
-		b = b/z
-		return c, d
+	def minimo(c, d)
+                z = gcd(c, d)
+                c = c / z
+                d = d / z
+                return c, d
 	end
 
 	def minMultiplo(u, v)
-		uu, vv = u, v
-		return (uu/gcd(uu,vv)) * vv
+		u, v = u.abs, v.abs
+		return (u / gcd(u,v)) * v
 	end
 
 	def suma (*args) # devuelve un nuevo racional que suma al objeto que invoca el que le pasan como parámetro
 		if args.size == 2
-                        @a, @b = minimo(args[0], args[1])
+                        x, y = minimo(args[0],args[1])
                 else
-                        @a = args[0]
+                        x = args[0]
                         y = 1
                 end
 
-                if (@x == @b) # Denominadores iguales
-                        @x += @a
-                else 
-                        denominador = minMultiplo(@x,@b)
-                        numerador = ((denominador/@y) * @X) + ((denominador/y) * x)
-                        @x, @y = minimo(numerador, denominador)
+                if (@b == y) # Igual denominador
+                        @a += x
+                else # Distinto denominador
+                        den = minMultiplo(@b,y)
+                        num = ((den / @b) * @a) + ((den / y) * x)
+                        @a, @b = minimo(num, den)
                 end
 
-                return @x, @y
+                return @a, @b
 	end
 	
-	def resta # devuelve un nuevo racional que resta al objeto que invoca el que le pasan como parámetro
+	def resta(*args) # devuelve un nuevo racional que resta al objeto que invoca el que le pasan como parámetro
+		if args.size == 2
+                        x, y = minimo(args[0],args[1])
+                else
+                        x = args[0]
+                        y = 1
+                end
+
+                if (@b == y) # Igual denominador
+                        @a -= x
+                else # Distinto denominador
+                        den = minMultiplo(@b,y)
+                        num = ((den / @b) * @a) - ((den / y) * x)
+                        @a, @b = minimo(num, den)
+                end
+
+                return @a, @b
 	end
 
-	def producto # devuelve un nuevo racional que multiplica al objeto que invoca el que le pasan como parámetro
+	def producto(*args) # devuelve un nuevo racional que multiplica al objeto que invoca el que le pasan como parámetro
 		
 	end
 	
-	def division # devuelve un nuevo racional que multiplica al objeto que invoca el que le pasan como parámetro
+	def division(*args) # devuelve un nuevo racional que multiplica al objeto que invoca el que le pasan como parámetro
+		
 	end
 
 end
